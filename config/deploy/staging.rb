@@ -5,4 +5,4 @@ set :stage, :staging
 set :branch, ENV['BRANCH'] || 'staging'
 set :default_env, { RACK_ENV: 'staging' }
 
-set ssh_options, { forward_agent: false, port: 2222 }
+set :ssh_options, { forward_agent: false, port: 2222 }
