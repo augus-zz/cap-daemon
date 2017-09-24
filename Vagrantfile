@@ -66,7 +66,7 @@ Vagrant.configure("2") do |config|
     apt install -y openssh-server curl ruby2.0
     gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
     curl -sSL https://get.rvm.io | bash -s stable
-    usermod -a rvm vagrant
+    usermod -a -G rvm vagrant
     source /etc/profile.d/rvm.sh
     rvm install 2.4.2
     rvm use 2.4.2 do gem install bundler -N
