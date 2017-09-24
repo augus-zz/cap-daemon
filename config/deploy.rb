@@ -16,9 +16,9 @@ namespace :deploy do
     on roles(:cron) do
       within "/home/vagrant/test-demo/current" do
         execute "ps aux|grep cron_job|awk '{print $2}'|xargs kill -9"
-        execute "echo 'start ping' >> /vagrant/log/cron.log"
-        execute "sleep 10; echo 'sleep' >> /vagrant/log/cron.log"
-        execute "(nohup ping www.baidu.com >> /vagrant/log/cron.log 2>&1 &) && sleep 10"
+        execute "ps aux|grep ping|awk '{print $2}'|xargs kill -9"
+        execute "(nohup rvm use 2.4.2 do ruby ./bin/cron_job > /dev/null 2>&1 &) && sleep 2"
+        execute "(nohup ping www.baidu.com >> /vagrant/log/cron.log 2>&1 &) && sleep 2"
       end
     end
   end
