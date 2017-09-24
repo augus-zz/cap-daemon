@@ -14,7 +14,7 @@ set :bundle_jobs, 4
 namespace :deploy do
   task :restart_cron do
     on roles(:cron) do
-      execute "/bin/bash -l -c 'cd /home/vagrant/test-demo/current; nohup rvm use 2.2.4 do ruby ./bin/cron_job >/dev/null 2>&1 &'"
+      execute "/bin/bash -l -c 'cd /home/vagrant/test-demo/current && (nohup rvm use 2.2.4 do ruby ./bin/cron_job >/dev/null 2>&1 &)'"
     end
   end
 
