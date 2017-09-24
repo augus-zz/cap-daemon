@@ -14,11 +14,14 @@ set :bundle_jobs, 4
 namespace :deploy do
   task :restart_cron do
     on roles(:cron) do
-    	execute "ps aux|grep cron_job|awk '{print $2}'|xargs kill -9"
-      execute "cd /home/vagrant/test-demo/current && nohup rvm use 2.4.2 do ruby ./bin/cron_job & >/dev/null"
+      within "/home/vagrant/test-demo/current" do
+        execute "ps aux|grep cron_job|awk '{print $2}'|xargs kill -9"
+        execute "echo 'start ping' >> /vagrant/log/cron.log"
+        execute "sleep 10; echo 'sleep' >> /vagrant/log/cron.log"
+        execute "(nohup ping www.baidu.com >> /vagrant/log/cron.log 2>&1 &) && sleep 10"
+      end
     end
   end
 
   after "deploy:published", "restart_cron"
 end
-
