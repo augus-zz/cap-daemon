@@ -71,5 +71,6 @@ Vagrant.configure("2") do |config|
     source /etc/profile.d/rvm.sh
     rvm install 2.2.4
     rvm use 2.2.4 do gem install rails -v 5.0.0.1
+    su - vagrant "mkdir /home/vagrant/test-demo"
   SHELL
 end
