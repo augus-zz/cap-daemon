@@ -14,6 +14,7 @@ set :bundle_jobs, 4
 namespace :deploy do
   task :restart_cron do
     on roles(:cron) do
+    	execute "ps aux|grep cron_job|awk '{print $2}'|xargs kill -9"
       execute "/bin/bash -l -c 'cd /home/vagrant/test-demo/current && (nohup rvm use 2.4.2 do ruby ./bin/cron_job &>/dev/null) &'"
     end
   end
