@@ -69,9 +69,9 @@ Vagrant.configure("2") do |config|
     groupadd rvm
     usermod -a rvm vagrant
     source /etc/profile.d/rvm.sh
-    rvm install 2.2.4
-    rvm use 2.2.4 do gem install rails -v 5.0.0.1 -N
-    rvm use 2.2.4 do gem install bundler -N
+    rvm install 2.4.2
+    rvm use 2.4.2 do gem install rails -v 5.0.0.1 -N
+    rvm use 2.4.2 do gem install bundler -N
     su - vagrant "mkdir /home/vagrant/test-demo"
   SHELL
 end
